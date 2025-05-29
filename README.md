@@ -35,5 +35,9 @@ This system allows users (students or staff) to:
 - 📅 Date-based booking
 - 🔎 Search and filter tools
 
+## 🧭 ER Diagram
+
+![ER Diagram](/SST-User/public/ERDiagram.jpg)
+
 
  
