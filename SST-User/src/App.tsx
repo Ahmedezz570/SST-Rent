@@ -20,6 +20,7 @@ import Profile from "./pages/Profile";
 import Logout from "./pages/Logout";
 import NotFound from "./pages/NotFound";
 import ToolDetail from "./pages/ToolDetail";
+import EventDetails from "./pages/EventDetails";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -32,12 +33,13 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <Routes>
-                {/* Public routes */}
+               
                 <Route path="/" element={<Index />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/tools/:id" element={<ToolDetail />} />
+                <Route path="/events/:id" element={<EventDetails />} />
                 {/* <Route path="/equipment-history" element={<EquipmentHistoryPage />} /> */}
                 {/* Protected routes */}
                 <Route path="/dashboard" element={

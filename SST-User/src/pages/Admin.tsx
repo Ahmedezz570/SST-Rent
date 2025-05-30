@@ -7,6 +7,7 @@ import { equipment, Equipment, users, User } from "@/data/dummyData";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AdminEquipment from "@/components/AdminEquipment";
 import AdminUsers from "@/components/AdminUsers";
+import AdminEvents from "@/components/AdminEvents";
 import { useToast } from "@/hooks/use-toast";
 
 export default function AdminPage() {
@@ -159,6 +160,7 @@ export default function AdminPage() {
         <TabsList className="mb-4">
           <TabsTrigger value="equipment">{t("manageEquipment")}</TabsTrigger>
           <TabsTrigger value="users">{t("manageUsers")}</TabsTrigger>
+          <TabsTrigger value="events">Events</TabsTrigger>
         </TabsList>
         
         <TabsContent value="equipment">
@@ -177,6 +179,9 @@ export default function AdminPage() {
             onUpdate={handleUpdateUser}
             onDelete={handleDeleteUser}
           />
+        </TabsContent>
+        <TabsContent value="events">
+          <AdminEvents />
         </TabsContent>
       </Tabs>
     </Layout>

@@ -37,7 +37,63 @@ export const users: Users[] = [
     createdAt: '2023-03-10'
   }
 ];
-
+export interface Event {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  location: string;
+  imageUrl: string;
+  type: 'competition' | 'update' | 'workshop' | 'announcement';
+  createdAt: string;
+  photos?: string[];
+}
+export const events: Event[] = [
+  {
+    id: '1',
+    title: 'Aerospace Design Competition 2024',
+    description: 'Annual aerospace design competition for engineering students. Teams will design and present innovative aerospace solutions.',
+    date: '2024-06-15',
+    location: 'Cairo University Engineering Campus, Hall A',
+    imageUrl: '/LOGOO.png',
+    type: 'competition',
+    createdAt: '2024-01-15',
+    photos: ['/LOGOO.png' , "/LOGOO.png" , "/LOGOO.png" , "/LOGOO.png"]
+  },
+  {
+    id: '2',
+    title: 'New Wind Tunnel Equipment Available',
+    description: 'We have added new advanced wind tunnel equipment to our laboratory. Book your sessions now.',
+    date: '2024-02-01',
+    location: 'Aerospace Lab - Building 3',
+    imageUrl: '/placeholder.svg',
+    type: 'update',
+    createdAt: '2024-01-28',
+    photos: ['/placeholder.svg']
+  },
+  {
+    id: '3',
+    title: 'Drone Assembly Workshop',
+    description: 'Hands-on workshop for assembling and programming autonomous drones. Limited seats available.',
+    date: '2024-03-20',
+    location: 'Workshop Room 205',
+    imageUrl: '/placeholder.svg',
+    type: 'workshop',
+    createdAt: '2024-02-15',
+    photos: ['/placeholder.svg']
+  },
+  {
+    id: '4',
+    title: 'Drone Assembly Workshop',
+    description: 'Hands-on workshop for assembling and programming autonomous drones. Limited seats available.',
+    date: '2024-03-20',
+    location: 'Workshop Room 205',
+    imageUrl: '/placeholder.svg',
+    type: 'workshop',
+    createdAt: '2024-02-15',
+    photos: ['/placeholder.svg']
+  }
+];
 // Equipment data
 export type EquipmentStatus = 'available' | 'rented' | 'maintenance';
 

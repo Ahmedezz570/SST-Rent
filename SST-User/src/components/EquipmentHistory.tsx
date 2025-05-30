@@ -114,7 +114,7 @@ export default function EquipmentHistoryComponent({ toolId }: EquipmentHistoryPr
               {history.map((item) => (
                 <TableRow key={item._id}>
                   <TableCell>
-                    {new Date(item.timestamp).toLocaleDateString(
+                    {new Date(item.date).toLocaleDateString(
                       language === 'ar' ? 'ar-EG' : 'en-US'
                     )}
                   </TableCell>

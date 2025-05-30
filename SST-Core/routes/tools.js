@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Tool = require('../models/ToolsSchema'); 
+const t = require('../scripts/toolschema');
 const logToolAction = require('../utils/logToolAction'); 
 const authMiddleware = require('../middleware/auth'); 
 // POST /api/tools/add
@@ -23,7 +24,8 @@ router.post('/add', authMiddleware ,async (req, res) => {
         tool: newTool._id, 
         user: req.user._id, 
         admin: req.user._id,
-        action: 'created' 
+        action: 'created' ,
+        date: new Date(),
       });
       res.status(201).json({ message: 'Tool added successfully', tool: newTool });
     } catch (error) {
@@ -73,7 +75,7 @@ router.delete('/delete/:id', async (req, res) => {
 // Get /api/tools/all
   router.get('/all', async (req, res) => {
     try {
-      const tools = await Tool.find();
+      const tools = await t.find();
       res.status(200).json(tools);
     } catch (error) {
       console.error("Error fetching tools:", error);
@@ -85,7 +87,7 @@ router.delete('/delete/:id', async (req, res) => {
     const { id } = req.params; 
   
     try {
-      const tool = await Tool.findById(id); 
+      const tool = await t.findById(id); 
       if (!tool) {
         return res.status(404).json({ message: 'Tool not found' }); 
       }

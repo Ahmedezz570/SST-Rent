@@ -20,6 +20,9 @@ const toolHistorySchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'rented', 'returned', 'updated', 'deleted' , 'created'],
     required: true
+  },
+  date: {
+    type: Date,
   }
 });
 

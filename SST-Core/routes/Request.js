@@ -26,7 +26,8 @@ router.post('/rent/:toolId', authMiddleware, async (req, res) => {
      await logToolAction({
             tool: tool._id, 
             user: req.user._id, 
-            action: 'pending' 
+            action: 'pending' ,
+            date: new Date(),
           });
     res.status(201).json({ message: 'Request has been send succefuly', request }); 
 

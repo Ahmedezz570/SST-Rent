@@ -181,7 +181,7 @@ console.log("Id user", user?.id);
         <h1 className="text-2xl font-bold tracking-tight">
           {t("requests.title")}
         </h1>
-        <p className="text-muted-foreground">{t("requests.subtitle")}</p>
+        {/* <p className="text-muted-foreground">{t("Requests")}</p> */}
       </div>
       
       
@@ -240,16 +240,16 @@ console.log("Id user", user?.id);
                   {user?.role === 'admin' && (
                     <div className="flex items-center">
                       <User className="h-4 w-4 mr-2 text-muted-foreground" />
-                      <span className="text-muted-foreground mr-2">{t("user.name")}:</span>
+                      <span className="text-muted-foreground mr-2">{t("Name")}:</span>
                       <span className="font-medium">{requestUser?.name}</span>
                     </div>
                   )}
                   
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-muted-foreground mr-2">{t("requests.requestDate")}:</span>
+                    <span className="text-muted-foreground mr-2">{t("RequestDate")}:</span>
                     <span className="font-medium">
-                      {new Date(request.requestDate).toLocaleDateString(
+                      {new Date(request.createdAt).toLocaleDateString(
                         language === 'ar' ? 'ar-EG' : 'en-US'
                       )}
                     </span>
@@ -257,7 +257,7 @@ console.log("Id user", user?.id);
                   
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-muted-foreground mr-2">{t("requests.startDate")}:</span>
+                    <span className="text-muted-foreground mr-2">{t("StartDate")}:</span>
                     <span className="font-medium">
                       {new Date(request.startDate).toLocaleDateString(
                         language === 'ar' ? 'ar-EG' : 'en-US'
@@ -267,7 +267,7 @@ console.log("Id user", user?.id);
                   
                   <div className="flex items-center">
                     <Calendar className="h-4 w-4 mr-2 text-muted-foreground" />
-                    <span className="text-muted-foreground mr-2">{t("requests.endDate")}:</span>
+                    <span className="text-muted-foreground mr-2">{t("EndDate")}:</span>
                     <span className="font-medium">
                       {new Date(request.expectedReturnDate).toLocaleDateString(
                         language === 'ar' ? 'ar-EG' : 'en-US'
@@ -285,7 +285,7 @@ console.log("Id user", user?.id);
                   
                   {request.reason && (
                     <div className="mt-3 pt-2 border-t">
-                      <span className="text-muted-foreground block mb-1">{t("equipment.comments")}:</span>
+                      <span className="text-muted-foreground block mb-1">{t("Comments")}:</span>
                       <p className="italic">{request.reason}</p>
                     </div>
                   )}
@@ -299,7 +299,7 @@ console.log("Id user", user?.id);
                         onClick={() => handleApproveRequest(request)}
                       >
                         <Check className="h-4 w-4 mr-1" />
-                        {t("requests.approve")}
+                        {t("Approve")}
                       </Button>
                       
                       <Button 
@@ -309,7 +309,7 @@ console.log("Id user", user?.id);
                         onClick={() => handleRejectRequest(request)}
                       >
                         <X className="h-4 w-4 mr-1" />
-                        {t("requests.reject")}
+                        {t("Reject")}
                       </Button>
                     </div>
                   )}
