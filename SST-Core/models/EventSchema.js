@@ -25,11 +25,11 @@ const EventSchema = new mongoose.Schema({
     enum: ['competition', 'update', 'workshop', 'announcement'], 
     required: true
   },
-  mainImage: {
+  imageUrl: {
     type: String,
     required: true
   },
-  galleryImages: {
+  photos: {
     type: [String],
     default: []
   }

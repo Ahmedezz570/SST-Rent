@@ -142,11 +142,11 @@ export default function AdminEvents() {
       </div>
 
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {allEvents.map((event) => (
+        {allEvents.reverse().map((event) => (
           <Card key={event.id} className="overflow-hidden">
             <div className="h-66 bg-gray-200 relative">
               <img
-                src={event.mainImage}
+                src={event.imageUrl}
                 alt={event.title}
                 className="w-full h-full object-cover"
               />

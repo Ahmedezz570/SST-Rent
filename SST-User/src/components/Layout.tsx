@@ -70,7 +70,7 @@ export default function Layout({
           <div className="flex items-center gap-2 font-semibold">
           <div
   className="cursor-pointer"
-  onClick={() => navigate("/")}
+  // onClick={() => navigate("/")}
 >
   <img
     src="/LOGOO.png"
@@ -80,7 +80,7 @@ export default function Layout({
 </div>
  <span
    className="hidden md:inline-block cursor-pointer no-underline hover:no-underline"
-  onClick={() => navigate("/")}
+  // onClick={() => navigate("/")}
 >
   {t("app.title")}
 </span>
@@ -191,11 +191,11 @@ export default function Layout({
               {t("auth.login")}
             </Button>
           </Link>
-          <Link to="/register">
+          {/* <Link to="/register">
             <Button variant="outline" className="w-full justify-start">
               {t("auth.register")}
             </Button>
-          </Link>
+          </Link> */}
         </div>
       );
     }

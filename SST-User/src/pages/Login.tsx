@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import Layout from "@/components/Layout";
-
+import { ArrowLeft} from "lucide-react";
 export default function Login() {
   const { login } = useAuth();
   const { t } = useLanguage();
@@ -47,7 +47,16 @@ export default function Login() {
   
   return (
     <Layout>
+      <Button
+                  variant="outline"
+                  onClick={() => navigate('/')}
+                  className="mb-6"
+                >
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Back to Home
+                </Button>
       <div className="flex items-center justify-center min-h-[80vh]">
+         
         <Card className="w-full max-w-md">
           <CardHeader>
             <CardTitle>{t("auth.login")}</CardTitle>
@@ -72,12 +81,12 @@ export default function Login() {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">{t("auth.password")}</Label>
-                  <Link 
-                    to="/forgot-password"
+                  {/* <Link 
+                    to="/"
                     className="text-xs text-primary hover:underline"
                   >
-                    {t("auth.forgotPassword")}
-                  </Link>
+                    {t("Back to Home")}
+                  </Link> */}
                 </div>
                 <Input
                   id="password"
@@ -98,13 +107,13 @@ export default function Login() {
                 {loading ? t("loading") : t("auth.login")}
               </Button>
               <div className="text-sm text-center">
-                {t("auth.noAccount")}{" "}
-                <Link 
+                {t("auth.noAccount")}{" "}{"Please back to admin "}
+                {/* <Link 
                   to="/register" 
                   className="text-primary hover:underline"
                 >
                   {t("auth.register")}
-                </Link>
+                </Link> */}
               </div>
             </CardFooter>
           </form>

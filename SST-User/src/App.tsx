@@ -21,6 +21,8 @@ import Logout from "./pages/Logout";
 import NotFound from "./pages/NotFound";
 import ToolDetail from "./pages/ToolDetail";
 import EventDetails from "./pages/EventDetails";
+import About from "./pages/About";
+import How from "./pages/HowToUse";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -40,6 +42,11 @@ const App = () => (
                 <Route path="/logout" element={<Logout />} />
                 <Route path="/tools/:id" element={<ToolDetail />} />
                 <Route path="/events/:id" element={<EventDetails />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/how-to-use" element={<How />} />
+                
+                {/* Uncomment if you want to enable equipment history page */}
+                {/* This route is currently commented out as per the original code */}
                 {/* <Route path="/equipment-history" element={<EquipmentHistoryPage />} /> */}
                 {/* Protected routes */}
                 <Route path="/dashboard" element={

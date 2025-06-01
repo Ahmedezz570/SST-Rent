@@ -4,7 +4,7 @@ const Event = require("../models/EventSchema");
 
 router.post("/add", async (req, res) => {
   try {
-    const { title, description, location, date,type, mainImage, galleryImages } = req.body;
+    const { title, description, location, date,type, imageUrl, photos } = req.body;
 
     const newEvent = new Event({
       title,
@@ -12,8 +12,8 @@ router.post("/add", async (req, res) => {
       location,
       date,
       type,  
-      mainImage,
-      galleryImages
+      imageUrl,
+      photos
     });
  const allowedTypes = ['competition', 'update', 'workshop', 'announcement'];
     if (!allowedTypes.includes(type)) {
@@ -29,10 +29,10 @@ router.post("/add", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    const events = await Event.find().sort({ date: 1 }); 
+    const events = await Event.find(); 
     res.json(events);
   } catch (err) {
-    res.status(500).json({ error: "حدث خطأ أثناء تحميل الأحداث" });
+    res.status(500).json({ error: "Error " });
   }
 });
 

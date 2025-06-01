@@ -34,7 +34,7 @@ const path = require('path');
 const Tool = require('./scripts/toolschema');
 mongoose.connect("mongodb+srv://ahmedez570:7253416@cluster.bxlgmut.mongodb.net/?retryWrites=true&w=majority")
 // .then(importExcelData)
-.then(() => console.log("✅ Connected to MongoDB"))
+.then(() => console.log("✅ Connected to MongoDB")) 
 .catch((err) => console.error("❌ MongoDB connection error:", err)); 
 app.listen(PORT_1, () => {
   console.log(`🚀 Server is running on http://localhost:${PORT_1}`);

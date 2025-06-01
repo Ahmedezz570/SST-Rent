@@ -97,32 +97,49 @@ export default function EventFormDialog({
     }
   }, [event, form, open]);
 
-  const handleMainPhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        setMainPhoto(result);
-        form.setValue("imageUrl", result);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  const uploadToCloudinary = async (file: File): Promise<string | null> => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("upload_preset", "SSTRent");
 
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    
-    files.forEach(file => {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result as string;
-        setSelectedPhotos(prev => [...prev, result]);
-        form.setValue("photos", [...selectedPhotos, result]);
-      };
-      reader.readAsDataURL(file);
+  try {
+    const res = await fetch(`https://api.cloudinary.com/v1_1/dlgzjfjlb/upload`, {
+      method: "POST",
+      body: formData,
     });
-  };
+    const data = await res.json();
+    return data.secure_url;
+  } catch (err) {
+    console.error("Cloudinary upload error", err);
+    return null;
+  }
+};
+const handleMainPhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const file = e.target.files?.[0];
+  if (file) {
+    const url = await uploadToCloudinary(file);
+    if (url) {
+      setMainPhoto(url);
+      form.setValue("imageUrl", url);
+    }
+  }
+};
+
+
+ const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const files = Array.from(e.target.files || []);
+  const uploadedUrls: string[] = [];
+
+  for (const file of files) {
+    const url = await uploadToCloudinary(file);
+    if (url) uploadedUrls.push(url);
+  }
+
+  const updatedPhotos = [...selectedPhotos, ...uploadedUrls];
+  setSelectedPhotos(updatedPhotos);
+  form.setValue("photos", updatedPhotos);
+};
+
 
   const removePhoto = (index: number) => {
     const newPhotos = selectedPhotos.filter((_, i) => i !== index);
@@ -130,18 +147,42 @@ export default function EventFormDialog({
     form.setValue("photos", newPhotos);
   };
 
-  const handleSubmit = (values: EventFormData) => {
-    const eventData = {
-      ...values,
-      imageUrl: mainPhoto,
-      photos: selectedPhotos,
-    };
-    onSubmit(eventData);
+const handleSubmit = async (values: EventFormData) => {
+  const eventData = {
+    ...values,
+    imageUrl: mainPhoto,
+    photos: selectedPhotos,
+  };
+
+  try {
+    const res = await fetch("http://localhost:3000/api/events/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(eventData),
+    });
+
+    if (!res.ok) {
+      const errorData = await res.json();
+      console.error("Error adding event:", errorData);
+      return;
+    }
+
+    const result = await res.json();
+    console.log("Event added:", result);
+
+    // Reset form and UI
     onOpenChange(false);
     form.reset();
     setSelectedPhotos([]);
     setMainPhoto("/placeholder.svg");
-  };
+
+  } catch (error) {
+    console.error("Submit error:", error);
+  }
+};
+
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>

@@ -92,15 +92,15 @@ export default function EventDetails() {
           Back to Home
         </Button>
 
-        {/* Flex container للتفاصيل و الصور جنب بعض */}
+      
         <div className="flex flex-col lg:flex-row gap-8 max-w-6xl mx-auto">
 
-          {/* التفاصيل الرئيسية (يمين أو يسار حسب الاتجاه) */}
+         
           <div className="flex-1">
             <Card className="overflow-hidden">
               <div className="h-66 bg-gray-200 relative">
                 <img
-                  src={event.mainImage}
+                  src={event.imageUrl}
                   alt={event.title}
                   className="w-full h-full object-cover"
                 />
@@ -153,7 +153,7 @@ export default function EventDetails() {
               </CardContent>
             </Card>
 
-            {/* معلومات إضافية بناءً على نوع الحدث */}
+         
             {event.type === 'competition' && (
               <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg mt-6 px-4">
                 <h3 className="text-xl font-semibold mb-2 text-purple-700 dark:text-purple-300">
@@ -178,11 +178,11 @@ export default function EventDetails() {
           </div>
 
          
-          {event.galleryImages && event.galleryImages.length > 0 && (
+          {event.photos && event.photos.length > 0 && (
   <div className="w-full lg:w-96">
     <h3 className="text-xl font-semibold mb-4">Event Photos</h3>
     <div className="grid grid-cols-2 gap-4">
-      {event.galleryImages.map((photo, index) => (
+      {event.photos.map((photo, index) => (
         <div
           key={index}
           className="aspect-[8/9] overflow-hidden rounded-lg bg-transparent"
