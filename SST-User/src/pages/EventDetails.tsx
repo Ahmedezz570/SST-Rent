@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, ArrowLeft, User } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useState, useEffect } from "react";
-
+import { events } from "@/data/dummyData";
 export default function EventDetails() {
   const { id } = useParams<{ id: string }>();
   const { t } = useLanguage();
@@ -29,7 +29,7 @@ export default function EventDetails() {
     fetchRecentEvents();
   }, []);
 
-  const event = allEvents.find(event => event._id === id);
+  const event = events.find(event => event.id === id);
 
   if (!event) {
     return (

@@ -10,6 +10,7 @@ import { events } from "@/data/dummyData";
 import { Badge } from "@/components/ui/badge";
 import About from "./About";
 import Footer from "./Footer";
+// import eve from "@/data/dummyData";
 export default function Index() {
   const { t } = useLanguage();
   const navigate = useNavigate();
@@ -141,11 +142,12 @@ export default function Index() {
           </div>
           
           <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-            {[...allEvents].slice(-6).reverse().map((event) => (
+            {/* {[...allEvents].slice(-6).reverse().map((event) => ( */}
+            {events.map((event) => (
               <Card 
                 key={event.id} 
                 className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:scale-[1.02] hover:-translate-y-1"
-                onClick={() => handleEventClick(event._id)}
+                onClick={() => handleEventClick(event.id)}
               >
                 <div className="relative h-564 overflow-hidden">
                   <img
@@ -197,7 +199,7 @@ export default function Index() {
             ))}
           </div>
           
-          {allEvents.length === 0 && (
+          {/* {allEvents.length === 0 && (
             <div className="text-center py-16">
               <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center">
                 <Calendar className="w-8 h-8 text-gray-400" />
@@ -205,7 +207,7 @@ export default function Index() {
               <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">No Events Yet</h3>
               <p className="text-gray-600 dark:text-gray-400">Check back soon for upcoming events and announcements.</p>
             </div>
-          )}
+          )} */}
         </div>
       </section>
       {/* Features Section */}

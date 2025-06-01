@@ -49,50 +49,88 @@ export interface Event {
   photos?: string[];
 }
 export const events: Event[] = [
-  {
-    id: '1',
-    title: 'Aerospace Design Competition 2024',
-    description: 'Annual aerospace design competition for engineering students. Teams will design and present innovative aerospace solutions.',
-    date: '2024-06-15',
-    location: 'Cairo University Engineering Campus, Hall A',
-    imageUrl: '/LOGOO.png',
-    type: 'competition',
-    createdAt: '2024-01-15',
-    photos: ['/LOGOO.png' , "/LOGOO.png" , "/LOGOO.png" , "/LOGOO.png"]
+  // {
+  //   id: '1',
+  //   title: 'Aerospace Design Competition 2024',
+  //   description: 'Annual aerospace design competition for engineering students. Teams will design and present innovative aerospace solutions.',
+  //   date: '2024-06-15',
+  //   location: 'Cairo University Engineering Campus, Hall A',
+  //   imageUrl: '/LOGOO.png',
+  //   type: 'competition',
+  //   createdAt: '2024-01-15',
+  //   photos: ['/LOGOO.png' , "/LOGOO.png" , "/LOGOO.png" , "/LOGOO.png"]
+  // },
+  // {
+  //   id: '2',
+  //   title: 'New Wind Tunnel Equipment Available',
+  //   description: 'We have added new advanced wind tunnel equipment to our laboratory. Book your sessions now.',
+  //   date: '2024-02-01',
+  //   location: 'Aerospace Lab - Building 3',
+  //   imageUrl: '/placeholder.svg',
+  //   type: 'update',
+  //   createdAt: '2024-01-28',
+  //   photos: ['/placeholder.svg']
+  // },
+   {
+    id: "68390b4c27fedf6de45801e8",
+    title: "Achievement",
+    description: "Our team's 3U CubeSat project is taking flight! Thrilled to announce that our team participated in EgSA Exhibtion for innovative space projects and ideas. This experience has been truly inspiring and we can't wait to see what the future holds! We are looking forward to having collaborated with the Egyptian Space Agency for more upcoming projects.To know more about this project scroll down and explore our graduation projects series. Follow our journey as we continue to explore the possibilities of space technology! 🚀",
+    location: "Cairo University",
+    date: "2024-04-29",
+    type: "announcement",
+    
+createdAt:
+"2025-05-30T01:35:08.082+00:00",  
+    imageUrl: "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748568804/tujjnohhan062ql5gpf6.jpg",
+    photos: [
+      "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748568859/zhq54vw4i60rciak3pko.jpg",
+      "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748568858/v1djuizsvht2hgsjtebz.jpg"
+    ]
   },
-  {
-    id: '2',
-    title: 'New Wind Tunnel Equipment Available',
-    description: 'We have added new advanced wind tunnel equipment to our laboratory. Book your sessions now.',
-    date: '2024-02-01',
-    location: 'Aerospace Lab - Building 3',
-    imageUrl: '/placeholder.svg',
-    type: 'update',
-    createdAt: '2024-01-28',
-    photos: ['/placeholder.svg']
-  },
-  {
-    id: '3',
-    title: 'Drone Assembly Workshop',
-    description: 'Hands-on workshop for assembling and programming autonomous drones. Limited seats available.',
-    date: '2024-03-20',
-    location: 'Workshop Room 205',
-    imageUrl: '/placeholder.svg',
-    type: 'workshop',
-    createdAt: '2024-02-15',
-    photos: ['/placeholder.svg']
-  },
-  {
-    id: '4',
-    title: 'Drone Assembly Workshop',
-    description: 'Hands-on workshop for assembling and programming autonomous drones. Limited seats available.',
-    date: '2024-03-20',
-    location: 'Workshop Room 205',
-    imageUrl: '/placeholder.svg',
-    type: 'workshop',
-    createdAt: '2024-02-15',
-    photos: ['/placeholder.svg']
-  }
+  // {
+  //   "id": "6839f3ffba8fefa1eb056d7c",
+  //   "title": "Celebrating",
+  //   "description": "Celebrating the incredible talent at the Rover Rumble Race Competition…",
+  //   "location": "Cairo University",
+  //   "date": "2025-05-03T00:00:00.000+00:00",
+  //   "type": "announcement",
+  //   "createdAt": "2025-05-30T18:07:59.730+00:00",
+  //   "updatedAt": "2025-05-30T18:07:59.730+00:00",
+  //   "__v": 0,
+  //   "imageUrl": "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570255/eayxfjib…",
+  //   "photos": [
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570263/jyhsv4es…",
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570258/tffnhj5v…",
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570257/dxqyhaao…",
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570256/p0pim7m2…",
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570256/cxi33zf8…",
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570256/b8mukyix…",
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570256/n31f1qhc…",
+  //     "https://res.cloudinary.com/dlgzjfjlb/image/upload/v1748570255/iz4gf82q…"
+  //   ]
+  // }
+  // {
+  //   id: '3',
+  //   title: 'Drone Assembly Workshop',
+  //   description: 'Hands-on workshop for assembling and programming autonomous drones. Limited seats available.',
+  //   date: '2024-03-20',
+  //   location: 'Workshop Room 205',
+  //   imageUrl: '/placeholder.svg',
+  //   type: 'workshop',
+  //   createdAt: '2024-02-15',
+  //   photos: ['/placeholder.svg']
+  // },
+  // {
+  //   id: '4',
+  //   title: 'Drone Assembly Workshop',
+  //   description: 'Hands-on workshop for assembling and programming autonomous drones. Limited seats available.',
+  //   date: '2024-03-20',
+  //   location: 'Workshop Room 205',
+  //   imageUrl: '/placeholder.svg',
+  //   type: 'workshop',
+  //   createdAt: '2024-02-15',
+  //   photos: ['/placeholder.svg']
+  // }
 ];
 // Equipment data
 export type EquipmentStatus = 'available' | 'rented' | 'maintenance';
