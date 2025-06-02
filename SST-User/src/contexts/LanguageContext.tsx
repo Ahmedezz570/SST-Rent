@@ -34,7 +34,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const translations = {
     en: {
       // Auth
-      "app.title": " SST -LabRent",
+      "app.title": " SST -Lab",
       "auth.login": "Login",
       "auth.register": "Register",
       "auth.email": "Email",

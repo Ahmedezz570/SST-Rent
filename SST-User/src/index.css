@@ -44,6 +44,13 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 221 83% 53%;
   }
+  html, body, #root {
+  height: 100%;
+  overflow: hidden; 
+}
+
+
+
 
   .dark {
     --background: 222 47% 11%;

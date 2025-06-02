@@ -1,102 +1,102 @@
 
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Link } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  
-  const socialLinks = [
-    { icon: Github, href: "https://github.com", label: "GitHub" },
-    { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  ];
+export default function Footer() {
+  const { t } = useLanguage();
 
   return (
-    <footer className="bg-ahmed-primary text-white py-12">
-      <div className="container px-4 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <a href="#home" className="text-2xl font-bold mb-4 inline-block">
-              Ahmed<span className="text-ahmed-accent">Ezz</span>
-            </a>
-            <p className="text-gray-300 max-w-md mb-6">
-              Creative developer and designer crafting beautiful, functional digital experiences that help businesses grow.
+    
+    <footer className="bg-muted/50 border-t">
+      <div className="container px-4 md:px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* About Section */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">{t("app.title")}</h3>
+            <p className="text-sm text-muted-foreground">
+              Space System Technology Laboratory - Cairo University's premier aerospace engineering research facility for student innovation and hands-on learning.
             </p>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => {
-                const Icon = social.icon;
-                return (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-10 h-10 rounded-full bg-ahmed-secondary flex items-center justify-center hover:bg-ahmed-accent transition-colors"
-                    aria-label={social.label}
-                  >
-                    <Icon size={18} />
-                  </a>
-                );
-              })}
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <div className="flex flex-col space-y-2">
+              <Link to="/" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Home
+              </Link>
+              <Link to="/how-to-use" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                How to Use
+              </Link>
+              <Link to="/login" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Login
+              </Link>
+              {/* <Link to="/register" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Register
+              </Link> */}
             </div>
           </div>
-          
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-ahmed-accent">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#home" className="text-gray-300 hover:text-ahmed-accent transition-colors">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-gray-300 hover:text-ahmed-accent transition-colors">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-gray-300 hover:text-ahmed-accent transition-colors">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-gray-300 hover:text-ahmed-accent transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
+
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Contact</h3>
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4" />
+                <span>Cairo University, Egypt</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Mail className="h-4 w-4" />
+                <span>info@sstlab.cu.edu.eg</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Phone className="h-4 w-4" />
+                <span>+20 2 XXXX XXXX</span>
+              </div>
+            </div>
           </div>
-          
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-ahmed-accent">Services</h3>
-            <ul className="space-y-2">
-              <li>
-                <span className="text-gray-300">Web Development</span>
-              </li>
-              <li>
-                <span className="text-gray-300">UI/UX Design</span>
-              </li>
-              <li>
-                <span className="text-gray-300">Responsive Design</span>
-              </li>
-              <li>
-                <span className="text-gray-300">App Development</span>
-              </li>
-            </ul>
+
+          {/* Social Media */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold">Follow Us</h3>
+            <div className="flex space-x-4">
+              <a href="https://www.facebook.com/share/1EQq9XtVMg/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Facebook className="h-5 w-5" />
+                <span className="sr-only">Facebook</span>
+              </a>
+              {/* <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Twitter className="h-5 w-5" />
+                <span className="sr-only">Twitter</span>
+              </a>
+              <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                <Instagram className="h-5 w-5" />
+                <span className="sr-only">Instagram</span>
+              </a> */}
+              <a href="https://www.linkedin.com/company/sstlab-egypt/" className="text-muted-foreground hover:text-primary transition-colors">
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+            </div>
           </div>
         </div>
-        
-        <div className="border-t border-gray-700 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {currentYear} Ahmed Ezz Aldin. All rights reserved.
-          </p>
-          <div className="text-gray-400 text-sm">
-            Made with <span className="text-ahmed-accent">♥</span> by Ahmed Ezz Aldin
+
+        <div className="mt-8 pt-8 border-t">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-sm text-muted-foreground">
+              © 2025 Space System Technology Laboratory. All rights reserved.
+            </p>
+            <div className="flex space-x-4 mt-4 md:mt-0">
+              <Link to="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Terms of Service
+              </Link>
+            </div>
           </div>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

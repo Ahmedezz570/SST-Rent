@@ -58,6 +58,7 @@ export default function Index() {
     navigate(`/events/${eventId}`); 
   };
   return (
+    <>
     <Layout >
       {/* Hero Section */}
       <section className="py-12 md:py-24">
@@ -213,7 +214,9 @@ export default function Index() {
       {/* Features Section */}
      
      <About />
-     {/* <Footer /> */}
+     <Footer />
     </Layout>
+    
+    </>
   );
 }
