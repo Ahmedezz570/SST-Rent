@@ -111,7 +111,7 @@
         role: user.role,
         studentId: user.studentId || "",
       });
-      setIsEditDialogOpen(true);
+      setIsEditDialogOpen(true);  
     };
     
     const handleAddUser = async (data: UserFormData) => {
@@ -138,7 +138,7 @@
       if (!onUpdate || !selectedUser) return;
     
       try {
-        const response = await fetch(`http://localhost:3000/api/users/users/${selectedUser._id}`, {
+        const response = await fetch(`https://core-production-71d5.up.railway.app/api/users/users/${selectedUser._id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -159,7 +159,7 @@
       if (!onDelete) return;
     
       try {
-        const response = await fetch(`http://localhost:3000/api/users/users/${id}`, {
+        const response = await fetch(`https://core-production-71d5.up.railway.app/api/users/users/${id}`, {
           method: "DELETE",
         });
     
@@ -181,7 +181,7 @@
     // Fetch users data from API when the component mounts
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/users/users');
+        const response = await fetch('https://core-production-71d5.up.railway.app/api/users/users');
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }
