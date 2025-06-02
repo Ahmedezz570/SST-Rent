@@ -29,7 +29,7 @@ export default function EventDetails() {
     fetchRecentEvents();
   }, []);
 
-  const event = events.find(event => event._id === id);
+  const event = allEvents.find(event => event._id === id);
 
   if (!event) {
     return (

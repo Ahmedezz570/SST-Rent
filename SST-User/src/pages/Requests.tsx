@@ -40,7 +40,7 @@ export default function RequestsPage() {
     };
         const fetchEquipments = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/tools/all'); 
+        const response = await fetch('https://sst-rent-pnuj.vercel.app/api/tools/all'); 
         if (!response.ok) throw new Error('Failed to fetch equipments');
         const data = await response.json();
         setEquipments(data);
@@ -51,7 +51,7 @@ export default function RequestsPage() {
     };
         const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/users/users'); 
+        const response = await fetch('https://sst-rent-pnuj.vercel.app/api/users/users'); 
         if (!response.ok) throw new Error('Failed to fetch equipments');
         const data = await response.json();
         setuserFetch(data);
@@ -148,7 +148,7 @@ console.log("Id user", user?.id);
   
  const handleRejectRequest = async (request: RentalRequest) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/rent/reject/${request._id}`, {
+    const res = await fetch(`https://sst-rent-pnuj.vercel.app/api/rent/reject/${request._id}`, {
       method: 'POST',
       headers: {
         "Content-Type": "application/json"
