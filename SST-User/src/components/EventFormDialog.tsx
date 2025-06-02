@@ -155,7 +155,7 @@ const handleSubmit = async (values: EventFormData) => {
   };
 
   try {
-    const res = await fetch("http://localhost:3000/api/events/add", {
+    const res = await fetch("https://core-production-71d5.up.railway.app/api/events/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

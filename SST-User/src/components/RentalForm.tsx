@@ -37,7 +37,7 @@ const RentalForm = ({ tool }: RentalFormProps) => {
 
     const token = localStorage.getItem("token");
 
-    const response = await fetch(`http://localhost:3000/api/rent/${tool._id}`, {
+    const response = await fetch(`https://core-production-71d5.up.railway.app/api/rent/${tool._id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -117,7 +117,7 @@
     const handleAddUser = async (data: UserFormData) => {
       if (!onAdd) return;
       try {
-        const response = await fetch("http://localhost:3000/api/users/users", {
+        const response = await fetch("https://core-production-71d5.up.railway.app/api/users/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

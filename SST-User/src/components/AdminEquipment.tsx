@@ -100,7 +100,7 @@ export default function AdminEquipment({
       try {
         const token = localStorage.getItem("token");
         console.log("Token:", token);   
-        const response = await fetch("http://localhost:3000/api/tools/add", {
+        const response = await fetch("https://core-production-71d5.up.railway.app/api/tools/add", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

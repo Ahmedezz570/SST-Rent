@@ -46,7 +46,7 @@ export default function EquipmentHistoryComponent({ toolId }: EquipmentHistoryPr
     async function fetchHistory() {
       try {
         setLoading(true);
-        const res = await fetch(`http://localhost:3000/api/history/${toolId}/history`);
+        const res = await fetch(`https://core-production-71d5.up.railway.app/api/history/${toolId}/history`);
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
 
         const data: EquipmentHistory[] = await res.json();

@@ -122,7 +122,7 @@ console.log("Id user", user?.id);
  const handleApproveRequest = async (request: RentalRequest) => {
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch(`http://localhost:3000/api/rent/approve/${request._id}`, {
+    const res = await fetch(`https://core-production-71d5.up.railway.app/api/rent/approve/${request._id}`, {
       method: 'POST',  
       headers: {
         "Content-Type": "application/json",

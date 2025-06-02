@@ -18,7 +18,7 @@ export default function EventDetails() {
   useEffect(() => {
     const fetchRecentEvents = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/events/");
+        const res = await fetch("https://core-production-71d5.up.railway.app/api/events");
         const data = await res.json();
         setAllEvents(data);
       } catch (err) {

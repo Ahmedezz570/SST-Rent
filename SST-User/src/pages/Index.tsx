@@ -18,7 +18,7 @@ export default function Index() {
    useEffect(() => {
         const fetchRecentEvents = async () => {
           try {
-            const res = await fetch("http://localhost:3000/api/events/"); 
+            const res = await fetch("https://core-production-71d5.up.railway.app/api/events"); 
             const data = await res.json();
             setAllEvents(data);
             console.log("Fetched events:", data);
@@ -144,11 +144,11 @@ export default function Index() {
           
           <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
             {/* {[...allEvents].slice(-6).reverse().map((event) => ( */}
-            {events.map((event) => (
+            {allEvents.map((event) => (
               <Card 
-                key={event.id} 
+                key={event._id} 
                 className="group overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm hover:scale-[1.02] hover:-translate-y-1"
-                onClick={() => handleEventClick(event.id)}
+                onClick={() => handleEventClick(event._id)}
               >
                 <div className="relative h-564 overflow-hidden">
                   <img

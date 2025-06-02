@@ -62,7 +62,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchRecentTools = async () => {
       try {
-        const res = await fetch("http://localhost:3000/api/tools/all"); 
+        const res = await fetch("https://core-production-71d5.up.railway.app/api/tools/all"); 
         const data = await res.json();
         setRecentTools(data);
       } catch (err) {
