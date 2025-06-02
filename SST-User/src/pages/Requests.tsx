@@ -23,7 +23,7 @@ export default function RequestsPage() {
     // Fetch users data from API when the component mounts
     const fetchReq = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/rent/requests');
+        const response = await fetch('https://core-production-71d5.up.railway.app/api/rent/requests');
         if (!response.ok) {
           throw new Error('Failed to fetch users');
         }
