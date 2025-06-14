@@ -24,7 +24,7 @@ import EventDetails from "./pages/EventDetails";
 import About from "./pages/About";
 import How from "./pages/HowToUse";
 import Materials from "./pages/Materials";
-import ForgotPassword from "./pages/ForgotPassword";
+import ForgotPassword from "./pages/ForgetPassword";
 const queryClient = new QueryClient();
 
 const App = () => (
