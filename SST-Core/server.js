@@ -27,6 +27,18 @@ app.get("/", (req, res) => {
   res.send("Server is running.......");   
 });
 
+// const Config = require('./models/ConfigSchema');
+
+// const initializeConfig = async () => {
+//   const config = await Config.findOne();
+//   if (!config) {
+//     await Config.create({ isLoginDisabledForUser: false });
+//     console.log("Default config document created.");
+//   }
+// };
+
+// initializeConfig();
+
 
 
 const XLSX = require('xlsx');
