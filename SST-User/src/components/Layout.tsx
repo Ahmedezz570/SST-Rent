@@ -68,7 +68,7 @@ export default function Layout({
   const toggleLoginForUsers = async () => {
     const newStatus = !isDisabled; 
     try {
-      const res = await fetch("http://localhost:3000/api/auth/checkLogin", {
+      const res = await fetch("https://core-production-71d5.up.railway.app/api/auth/checkLogin", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
