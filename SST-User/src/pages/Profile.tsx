@@ -37,7 +37,7 @@ export default function ProfilePage() {
       // Fetch users data from API when the component mounts
       const fetchReq = async () => {
         try {
-          const response = await fetch('https://core-production-71d5.up.railway.app//api/rent/requests');
+          const response = await fetch('https://core-production-71d5.up.railway.app/api/rent/requests');
           if (!response.ok) {
             throw new Error('Failed to fetch users');
           }
@@ -54,7 +54,7 @@ export default function ProfilePage() {
       };
        const fetchEquipments = async () => {
       try {
-        const response = await fetch('https://core-production-71d5.up.railway.app//api/tools/all'); 
+        const response = await fetch('https://core-production-71d5.up.railway.app/api/tools/all'); 
         if (!response.ok) throw new Error('Failed to fetch equipments');
         const data = await response.json();
         setEquipments(data);

@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -11,6 +11,7 @@ import { toast } from "sonner";
 import Layout from "@/components/Layout";
 import { ArrowLeft} from "lucide-react";
 export default function Login() {
+    const [isDisabled, setIsDisabled] = useState(false);
   const { login } = useAuth();
   const { t } = useLanguage();
   const navigate = useNavigate();
@@ -44,7 +45,19 @@ export default function Login() {
       setLoading(false);
     }
   };
-  
+   useEffect(() => {
+      const fetchStatus = async () => {
+        try {
+          const res = await fetch("https://core-production-71d5.up.railway.app/api/auth/getLoginStatus");
+          const data = await res.json();
+          setIsDisabled(data.isLoginDisabledForUser);
+          // console.log("Login status fetched:", data.isLoginDisabledForUser);
+        } catch (err) {
+          console.error("Error fetching login status:", err);
+        }
+      };
+      fetchStatus();
+    }, []);
   return (
     <Layout>
       <Button
@@ -87,6 +100,12 @@ export default function Login() {
                   >
                     {t("Back to Home")}
                   </Link> */}
+                   <Link 
+                    to="/forgot-password"
+                    className="text-xs text-primary hover:underline"
+                  >
+                    {t("auth.forgotPassword")}
+                  </Link>
                 </div>
                 <Input
                   id="password"
@@ -96,6 +115,8 @@ export default function Login() {
                   disabled={loading}
                   required
                 />
+                { isDisabled && (
+                  <div className="text-red-500 text-sm mt-2"><div/>Login is currently disabled for users. Please contact support for more information.</div>)}
               </div>
             </CardContent>
             <CardFooter className="flex-col space-y-4">

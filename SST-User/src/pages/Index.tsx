@@ -10,6 +10,9 @@ import { events } from "@/data/dummyData";
 import { Badge } from "@/components/ui/badge";
 import About from "./About";
 import Footer from "./Footer";
+import LabLocationMap from "@/components/LabLocationMap";
+import LabLocationSection from "@/sections/LabLocationSection";
+import ManagementSection from "@/sections/ManagementSection";
 // import eve from "@/data/dummyData";
 export default function Index() {
   const { t } = useLanguage();
@@ -91,7 +94,15 @@ export default function Index() {
                   size="lg"
                 >
                   <Info className="mr-2 h-4 w-4" />
-                  How to Use Our Platform
+                  How to Use 
+                </Button>
+                <Button 
+                  onClick={() => navigate("/materials")} 
+                  variant="outline" 
+                  size="lg"
+                >
+                  <Info className="mr-2 h-4 w-4" />
+                  Marerial
                 </Button>
               </div>
             </div>
@@ -212,8 +223,9 @@ export default function Index() {
         </div>
       </section>
       {/* Features Section */}
-     
+     {/* <LabLocationSection/> */}
      <About />
+     <ManagementSection/>
      <Footer />
     </Layout>
     

@@ -12,9 +12,11 @@ import {
   TableRow 
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Plus, Edit, Trash2 } from "lucide-react";
+import { Plus, Edit, Trash2 , FileSpreadsheet } from "lucide-react";
 import EquipmentFormDialog from "@/components/EquipmentFormDialog";
   import { useForm } from "react-hook-form";
+  import { useToast } from "@/hooks/use-toast";
+  import { Input } from "@/components/ui/input";
 interface AdminEquipmentProps {
   equipment: Equipment[];
   onAdd: (newEquipment: Equipment) => void;
@@ -43,10 +45,12 @@ export default function AdminEquipment({
   const [selectedEquipment, setSelectedEquipment] = useState<Equipment | null>(null);
     const [recentTools, setRecentTools] = useState([]);
     const [loadingRecent, setLoadingRecent] = useState(true);
+    const [isUploading, setIsUploading] = useState(false);
+     const { toast } = useToast();
     useEffect(() => {
       const fetchRecentTools = async () => {
         try {
-          const res = await fetch("http://localhost:3000/api/tools/all"); 
+          const res = await fetch("https://core-production-71d5.up.railway.app/api/tools/all"); 
           const data = await res.json();
           setRecentTools(data);
         } catch (err) {
@@ -122,6 +126,55 @@ export default function AdminEquipment({
     setIsEditDialogOpen(false);
   };
   
+  
+  const handleExcelUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      const excelData = await parseEquipmentExcel(file);
+      
+      excelData.forEach((item, index) => {
+        const newEquipment: Equipment = {
+          id: `${equipment.length + index + 1}`,
+          name: item.name,
+          description: item.description,
+          category: item.category,
+          status: (item.status as any) || 'available',
+          imageUrl: '/placeholder.svg',
+          quantity: item.quantity,
+          specifications: {
+            power: item.specifications?.power || '',
+            weight: item.specifications?.weight || '',
+            dimensions: item.specifications?.dimensions || '',
+          },
+          history: [{
+            id: `${Date.now()}-${index}`,
+            userId: '1',
+            action: 'created',
+            timestamp: new Date().toISOString().split('T')[0],
+            notes: 'Equipment imported from Excel'
+          }]
+        };
+        onAdd(newEquipment);
+      });
+
+      toast({
+        title: "Excel Import Successful",
+        description: `${excelData.length} equipment items imported successfully.`,
+      });
+    } catch (error) {
+      toast({
+        title: "Import Failed",
+        description: "Failed to parse Excel file. Please check the format.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsUploading(false);
+      event.target.value = '';
+    }
+  };
   const getStatusBadgeColor = (status: string) => {
     switch(status) {
       case 'Available':
@@ -146,10 +199,29 @@ export default function AdminEquipment({
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold">{t("admin.equipmentList")}</h2>
-        <Button onClick={handleOpenAddDialog}>
+        {/* <Button onClick={handleOpenAddDialog}>
           <Plus className="mr-2 h-4 w-4" />
           {t("admin.addEquipment")}
-        </Button>
+        </Button> */}
+        <div className="flex gap-2">
+          <div className="relative">
+            <Input
+              type="file"
+              accept=".xlsx,.xls"
+              onChange={handleExcelUpload}
+              disabled={isUploading}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+            <Button variant="outline" disabled={isUploading}>
+              <FileSpreadsheet className="mr-2 h-4 w-4" />
+              {isUploading ? "Uploading..." : "Import Excel"}
+            </Button>
+          </div>
+          <Button onClick={handleOpenAddDialog}>
+            <Plus className="mr-2 h-4 w-4" />
+            {t("admin.addEquipment")}
+          </Button>
+        </div>
       </div>
       
       <div className="rounded-md border">

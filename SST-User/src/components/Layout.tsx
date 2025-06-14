@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState , useEffect} from "react";
 import { Link, useNavigate } from "react-router-dom";  // Add useNavigate
 import { useTheme } from "@/contexts/ThemeContext";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useAuth } from "@/contexts/AuthContext"; // Add useAuth
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
+import { Lock, Unlock } from "lucide-react";
+
 import { 
   Sun, 
   Moon, 
@@ -35,6 +37,7 @@ export default function Layout({
   const { theme, toggleTheme } = useTheme();
   const { language, changeLanguage, t } = useLanguage();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const isMobile = useIsMobile();
   const navigate = useNavigate();
   const { logout } = useAuth();
@@ -48,7 +51,50 @@ export default function Layout({
     });
     navigate("/");
   };
+    useEffect(() => {
+    const fetchStatus = async () => {
+      try {
+        const res = await fetch("https://core-production-71d5.up.railway.app/api/auth/getLoginStatus");
+        const data = await res.json();
+        setIsDisabled(data.isLoginDisabledForUser);
+        // console.log("Login status fetched:", data.isLoginDisabledForUser);
+      } catch (err) {
+        console.error("Error fetching login status:", err);
+      }
+    };
+    fetchStatus();
+  }, []);
 
+  const toggleLoginForUsers = async () => {
+    const newStatus = !isDisabled; 
+    try {
+      const res = await fetch("http://localhost:3000/api/auth/checkLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ disableLogin: newStatus }),
+      });
+
+      const data = await res.json();
+      if (res.ok) {
+        setIsDisabled(newStatus); 
+        toast({
+          title: "Login Status Updated",
+          description: `Login disabled: ${newStatus}`,
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: data.message || "Failed to toggle login status.",
+        });
+      }
+    } catch (error) {
+      console.error("Error toggling login:", error);
+    }
+  };
+
+  
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
@@ -92,6 +138,7 @@ export default function Layout({
           
           <div className="flex items-center gap-2">
             {isAuthenticated && (
+              <>
               <Button
                 variant="ghost"
                 size="icon"
@@ -102,9 +149,15 @@ export default function Layout({
                 <LogOut className="h-5 w-5" />
                 <span className="sr-only">{t("auth.logout")}</span>
               </Button>
+               </>
             )}
-            
-            <Button
+            {userRole === "admin" &&(
+               <Button variant="ghost" size="icon" onClick={toggleLoginForUsers}>
+  {isDisabled ? <Lock className="h-5 w-5" /> : <Unlock className="h-5 w-5" />}
+</Button>)
+            }
+        
+            {/* <Button
               variant="ghost"
               size="icon"
               onClick={() => changeLanguage(language === "en" ? "ar" : "en")}
@@ -112,7 +165,7 @@ export default function Layout({
             >
               <Globe className="h-5 w-5" />
               <span className="sr-only">{t("language")}</span>
-            </Button>
+            </Button> */}
             
             <Button
               variant="ghost"

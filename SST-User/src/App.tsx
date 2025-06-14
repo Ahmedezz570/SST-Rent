@@ -23,6 +23,8 @@ import ToolDetail from "./pages/ToolDetail";
 import EventDetails from "./pages/EventDetails";
 import About from "./pages/About";
 import How from "./pages/HowToUse";
+import Materials from "./pages/Materials";
+import ForgotPassword from "./pages/ForgotPassword";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -44,7 +46,8 @@ const App = () => (
                 <Route path="/events/:id" element={<EventDetails />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/how-to-use" element={<How />} />
-                
+                <Route path="/materials" element={<Materials />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
                 {/* Uncomment if you want to enable equipment history page */}
                 {/* This route is currently commented out as per the original code */}
                 {/* <Route path="/equipment-history" element={<EquipmentHistoryPage />} /> */}

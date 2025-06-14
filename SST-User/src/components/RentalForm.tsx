@@ -23,7 +23,7 @@ interface RentalFormProps {
 
 const RentalForm = ({ tool }: RentalFormProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(
-    new Date(Date.now() + 86400000 * 7) // Default to 7 days from now
+    new Date(Date.now() + 86400000 * 7) 
   );
   const [purpose, setPurpose] = useState("");
   const { toast } = useToast();

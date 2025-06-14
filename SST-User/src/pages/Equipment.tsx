@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import EquipmentDialog from "@/components/EquipmentDialog";
 import RentalRequestForm, { RentalFormData } from "@/components/RentalRequestForm";
 import { Link } from "react-router-dom"; 
+import { usePagination } from "../hooks/usePagination"; 
 
 export default function EquipmentPage() {
   const { user } = useAuth();
@@ -21,9 +22,8 @@ export default function EquipmentPage() {
   const [rentalFormOpen, setRentalFormOpen] = useState(false);
   const { toast } = useToast();
   const [loadingRecent, setLoadingRecent] = useState(true);
-  // useEffect(() => {
-  //   setEquipmentList(equipment);
-  // }, []);
+  const [currentPage, setCurrentPage] = useState(1); 
+
   useEffect(() => {
     const fetchRecentTools = async () => {
       try {
@@ -39,6 +39,18 @@ export default function EquipmentPage() {
 
     fetchRecentTools();
   }, []);
+
+  const {
+    items: paginatedItems,
+    totalPages,
+    hasNextPage,
+    hasPreviousPage,
+  } = usePagination<Equipment>({
+    items: equipmentList,
+    itemsPerPage: 6,
+    currentPage,
+    sortByDate: (item) => item.createdAt || "", 
+  });
 
   const openEquipmentDialog = (equipment: Equipment) => {
     setSelectedEquipment(equipment);
@@ -123,8 +135,8 @@ export default function EquipmentPage() {
       </div>
 
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {equipmentList.map((item) => (
-          <Card key={item.id} className="overflow-hidden">
+        {paginatedItems.map((item) => (
+          <Card key={item._id} className="overflow-hidden">
             <div className="h-48 bg-gray-200 relative">
               <img
                 src={"/placeholder.svg"}
@@ -157,18 +169,26 @@ export default function EquipmentPage() {
               >
                 {t("equipment.details")}
               </Link>
-              {/* {user?.role === 'student' && (
-                <Button
-                  size="sm"
-                  disabled={item.status !== 'available'}
-                  onClick={() => handleRentRequest(item)}
-                >
-                  {t("equipment.rent")}
-                </Button>
-              )} */}
             </CardFooter>
           </Card>
         ))}
+      </div>
+
+      {/* Pagination Controls */}
+      <div className="flex justify-center items-center mt-6 space-x-4">
+        <Button 
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={!hasPreviousPage}
+        >
+          Previous
+        </Button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <Button 
+          onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+          disabled={!hasNextPage}
+        >
+          Next
+        </Button>
       </div>
 
       {selectedEquipment && (

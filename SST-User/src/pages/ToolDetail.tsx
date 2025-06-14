@@ -17,7 +17,7 @@ const ToolDetail = () => {
   useEffect(() => {
     const fetchTool = async () => {
       try {
-        const response = await fetch(`https://core-production-71d5.up.railway.app/api/tools/${id}`);
+        const response = await fetch(`http://localhost:3000/api/tools/${id}`);
         if (!response.ok) {
           throw new Error("Tool not found");
         }

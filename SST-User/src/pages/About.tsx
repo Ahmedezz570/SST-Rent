@@ -29,6 +29,7 @@ import {
   Navigation,
   ArrowLeft
 } from "lucide-react";
+import LabLocationSection from "@/sections/LabLocationSection";
 
 export default function About() {
   const { t } = useLanguage();
@@ -183,6 +184,21 @@ export default function About() {
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Who We Are
             </h2>
+
+<div className="flex items-center justify-center w-full h-full">
+<img
+  src={"https://sstl.surge.sh/IMG_1482.JPG"}
+  alt=""
+  style={{ width: "700px", height: "500px" }}
+  className="object-cover transition-transform duration-300 group-hover:scale-110"
+/>
+
+</div>
+
+
+
+
+
             <p className="max-w-4xl mx-auto text-lg text-muted-foreground leading-relaxed">
               At SST Lab, students engage in a wide range of technical domains—from space systems and robotics to drones, rovers, and satellite technology. Our members participate in practical trainings such as CanSat, Lean CubeSat, and other specialized programs to build a solid foundation in aerospace and embedded systems technologies.
             </p>
@@ -211,6 +227,7 @@ export default function About() {
         </div>
       </section>
 
+<LabLocationSection/>
      
       <section className="py-16">
         <div className="container px-4 md:px-6">

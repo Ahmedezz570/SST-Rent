@@ -16,12 +16,12 @@ export default function RequireAuth({ children, requireAdmin = false }: RequireA
   }
 
   if (!user) {
-    // Redirect to login page but save the current location
+
     return <Navigate to="/login" state={{ from: location }} replace />;
   }
 
   if (requireAdmin && user.role !== 'admin') {
-    // If admin access is required but user is not an admin
+   
     return <Navigate to="/dashboard" replace />;
   }
 
